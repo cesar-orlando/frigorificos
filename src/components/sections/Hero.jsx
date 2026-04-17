@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Snowflake, Thermometer, ChevronDown } from 'lucide-react';
+import { ArrowRight, Snowflake, ChevronDown } from 'lucide-react';
 import { useBrand } from '../../context/BrandContext';
 import { cn } from '../../lib/utils';
 import { useCountUp } from '../../hooks/useCountUp';
@@ -30,8 +30,9 @@ function StatItem({ stat }) {
   );
 }
 
-/* ── Floating temperature card ── */
-function TemperatureCard() {
+/* ── Floating card (dynamic per brand) ── */
+function FloatingCard({ card }) {
+  const Icon = card.icon;
   return (
     <motion.div
       initial={{ opacity: 0, y: 30, scale: 0.9 }}
@@ -47,12 +48,12 @@ function TemperatureCard() {
         </span>
 
         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-ice-400/15">
-          <Thermometer className="h-5 w-5 text-brand-ice-400" />
+          <Icon className="h-5 w-5 text-brand-ice-400" />
         </div>
         <div>
-          <p className="font-display text-2xl tracking-tight text-white">-18.2°C</p>
+          <p className="font-display text-2xl tracking-tight text-white">{card.value}</p>
           <p className="text-[11px] font-medium uppercase tracking-wider text-brand-ice-400/80">
-            Temp. Óptima
+            {card.label}
           </p>
         </div>
       </div>
@@ -112,9 +113,10 @@ export default function Hero() {
             <span>{brand.tagline}</span>
           </motion.div>
 
-          {/* Title */}
-          <div className="mb-6 overflow-hidden">
-            <motion.h1
+          {/* Title — sr-only h1 for screen readers, aria-hidden visual */}
+          <h1 className="sr-only">{titleLine1} {titleLine2}</h1>
+          <div className="mb-6 overflow-hidden" aria-hidden="true">
+            <div
               className="font-display text-6xl leading-[0.9] tracking-tight sm:text-7xl md:text-8xl lg:text-9xl"
             >
               {/* Line 1 */}
@@ -139,7 +141,7 @@ export default function Hero() {
                   {titleLine2}
                 </motion.span>
               </span>
-            </motion.h1>
+            </div>
           </div>
 
           {/* Animated red line */}
@@ -209,18 +211,18 @@ export default function Hero() {
           <div className="relative">
             <div className="animate-float relative aspect-[4/5] w-full overflow-hidden rounded-3xl ring-1 ring-white/10">
               <img
-                src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80"
-                alt="Interior de almacén frigorífico con temperatura controlada"
-                className="h-full w-full object-cover"
+                src={brand.heroImage}
+                alt={brand.heroImageAlt}
+                className="h-[115%] w-full object-cover object-top"
                 loading="eager"
               />
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-900/70 via-brand-navy-900/20 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-navy-800/30 to-transparent" />
+              {/* Overlay gradients (also covers watermark in bottom-right) */}
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-900/80 via-brand-navy-900/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-tl from-brand-navy-900/60 via-transparent to-transparent" />
             </div>
 
-            {/* Floating temp card */}
-            <TemperatureCard />
+            {/* Floating card (dynamic per brand) */}
+            <FloatingCard card={brand.floatingCard} />
 
             {/* Decorative ring behind image */}
             <div className="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] border border-white/5" />

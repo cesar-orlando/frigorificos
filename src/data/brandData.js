@@ -38,6 +38,10 @@ export const brands = {
       { value: 500, suffix: '+', label: 'Clientes Satisfechos' },
     ],
     heroIcon: Snowflake,
+    heroImage: 'https://milkasa.s3.us-east-2.amazonaws.com/logos/frigorificos/Gemini_Generated_Image_o3mxyao3mxyao3mx.png',
+    heroImageAlt: 'Interior de cámara fría con racks industriales y montacargas',
+    aboutImage: 'https://milkasa.s3.us-east-2.amazonaws.com/logos/frigorificos/Gemini_Generated_Image_1qlcde1qlcde1qlc.png',
+    floatingCard: { icon: Thermometer, value: '-18.2°C', label: 'Temp. Óptima' },
   },
   logistica: {
     id: 'logistica',
@@ -72,5 +76,9 @@ export const brands = {
       { label: '1M+', isStatic: true, staticValue: '1M+', sublabel: 'Km Recorridos al Año' },
     ],
     heroIcon: Truck,
+    heroImage: 'https://milkasa.s3.us-east-2.amazonaws.com/logos/frigorificos/Gemini_Generated_Image_7nn3qs7nn3qs7nn3.png',
+    heroImageAlt: 'Tractocamión Santander Logística Terrestre en carretera',
+    aboutImage: 'https://milkasa.s3.us-east-2.amazonaws.com/logos/frigorificos/Gemini_Generated_Image_cwdhkzcwdhkzcwdh.png',
+    floatingCard: { icon: MapPin, value: '32 estados', label: 'Cobertura Nacional' },
   },
 };

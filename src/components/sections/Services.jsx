@@ -16,7 +16,7 @@ export default function Services() {
   return (
     <section
       id="servicios"
-      className="relative bg-brand-navy-50 py-24 lg:py-32 overflow-hidden"
+      className="relative bg-brand-navy-50 py-24 lg:py-32 overflow-x-clip"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* ========== HEADER ========== */}

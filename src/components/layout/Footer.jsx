@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Globe, MessageSquare, ExternalLink } from 'lucide-react';
 import { useBrand } from '../../context/BrandContext';
 import { cn } from '../../lib/utils';
@@ -147,18 +148,18 @@ export default function Footer() {
           </p>
 
           <div className="flex items-center gap-6">
-            <a
-              href="#"
+            <Link
+              to="/privacidad"
               className="text-xs text-white/30 transition-colors duration-200 hover:text-white"
             >
               Aviso de Privacidad
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/terminos"
               className="text-xs text-white/30 transition-colors duration-200 hover:text-white"
             >
-              T&eacute;rminos
-            </a>
+              Términos
+            </Link>
           </div>
         </motion.div>
       </div>
