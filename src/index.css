@@ -65,47 +65,52 @@
   100% { transform: scale(2.5); opacity: 0; }
 }
 
-/* Base */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-body {
-  font-family: 'Inter', system-ui, sans-serif;
-  color: #334155;
-  background: #fff;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Base — wrapped in @layer to not override Tailwind utilities */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #334155;
+    background: #fff;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #05122A; }
-::-webkit-scrollbar-thumb { background: #E30613; border-radius: 3px; }
+@layer base {
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #05122A; }
+  ::-webkit-scrollbar-thumb { background: #E30613; border-radius: 3px; }
 
-/* Skip to content */
-.skip-link {
-  position: absolute;
-  top: -100%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
-  padding: 0.75rem 1.5rem;
-  background: #E30613;
-  color: white;
-  border-radius: 0 0 0.5rem 0.5rem;
-  font-weight: 600;
-  font-size: 0.875rem;
-  transition: top 0.2s;
+  /* Skip to content */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    padding: 0.75rem 1.5rem;
+    background: #E30613;
+    color: white;
+    border-radius: 0 0 0.5rem 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: top 0.2s;
+  }
+  .skip-link:focus { top: 0; }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid #E30613;
+    outline-offset: 2px;
+  }
 }
-.skip-link:focus { top: 0; }
 
-/* Focus ring */
-:focus-visible {
-  outline: 2px solid #E30613;
-  outline-offset: 2px;
-}
-
-/* Reduced motion */
+/* Reduced motion — must stay unlayered for !important to work */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
