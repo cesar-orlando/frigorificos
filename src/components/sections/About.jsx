@@ -136,8 +136,8 @@ export default function About() {
           >
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80"
-                alt="Almacén industrial con temperatura controlada"
+                src={brand.aboutImage}
+                alt={brand.heroImageAlt}
                 className="w-full rounded-3xl object-cover aspect-[4/3]"
               />
 

@@ -38,6 +38,10 @@ export const brands = {
       { value: 500, suffix: '+', label: 'Clientes Satisfechos' },
     ],
     heroIcon: Snowflake,
+    heroImage: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80',
+    heroImageAlt: 'Interior de almacén frigorífico con temperatura controlada',
+    aboutImage: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+    floatingCard: { icon: Thermometer, value: '-18.2°C', label: 'Temp. Óptima' },
   },
   logistica: {
     id: 'logistica',
@@ -72,5 +76,9 @@ export const brands = {
       { label: '1M+', isStatic: true, staticValue: '1M+', sublabel: 'Km Recorridos al Año' },
     ],
     heroIcon: Truck,
+    heroImage: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80',
+    heroImageAlt: 'Tractocamión refrigerado de transporte de mercancías',
+    aboutImage: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=800&q=80',
+    floatingCard: { icon: MapPin, value: '32 estados', label: 'Cobertura Nacional' },
   },
 };

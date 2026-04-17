@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Snowflake, Thermometer, ChevronDown } from 'lucide-react';
+import { ArrowRight, Snowflake, ChevronDown } from 'lucide-react';
 import { useBrand } from '../../context/BrandContext';
 import { cn } from '../../lib/utils';
 import { useCountUp } from '../../hooks/useCountUp';
@@ -30,8 +30,9 @@ function StatItem({ stat }) {
   );
 }
 
-/* ── Floating temperature card ── */
-function TemperatureCard() {
+/* ── Floating card (dynamic per brand) ── */
+function FloatingCard({ card }) {
+  const Icon = card.icon;
   return (
     <motion.div
       initial={{ opacity: 0, y: 30, scale: 0.9 }}
@@ -47,12 +48,12 @@ function TemperatureCard() {
         </span>
 
         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-ice-400/15">
-          <Thermometer className="h-5 w-5 text-brand-ice-400" />
+          <Icon className="h-5 w-5 text-brand-ice-400" />
         </div>
         <div>
-          <p className="font-display text-2xl tracking-tight text-white">-18.2°C</p>
+          <p className="font-display text-2xl tracking-tight text-white">{card.value}</p>
           <p className="text-[11px] font-medium uppercase tracking-wider text-brand-ice-400/80">
-            Temp. Óptima
+            {card.label}
           </p>
         </div>
       </div>
@@ -210,8 +211,8 @@ export default function Hero() {
           <div className="relative">
             <div className="animate-float relative aspect-[4/5] w-full overflow-hidden rounded-3xl ring-1 ring-white/10">
               <img
-                src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80"
-                alt="Interior de almacén frigorífico con temperatura controlada"
+                src={brand.heroImage}
+                alt={brand.heroImageAlt}
                 className="h-full w-full object-cover"
                 loading="eager"
               />
@@ -220,8 +221,8 @@ export default function Hero() {
               <div className="absolute inset-0 bg-gradient-to-br from-brand-navy-800/30 to-transparent" />
             </div>
 
-            {/* Floating temp card */}
-            <TemperatureCard />
+            {/* Floating card (dynamic per brand) */}
+            <FloatingCard card={brand.floatingCard} />
 
             {/* Decorative ring behind image */}
             <div className="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] border border-white/5" />
