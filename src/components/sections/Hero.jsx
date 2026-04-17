@@ -216,9 +216,9 @@ export default function Hero() {
                 className="h-full w-full object-cover"
                 loading="eager"
               />
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-900/70 via-brand-navy-900/20 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-navy-800/30 to-transparent" />
+              {/* Overlay gradients (also covers watermark in bottom-right) */}
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-900/80 via-brand-navy-900/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-tl from-brand-navy-900/60 via-transparent to-transparent" />
             </div>
 
             {/* Floating card (dynamic per brand) */}
