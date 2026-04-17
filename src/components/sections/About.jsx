@@ -134,19 +134,22 @@ export default function About() {
             initial="initial"
             viewport={viewport}
           >
-            <div className="relative overflow-hidden rounded-3xl">
-              <img
-                src={brand.aboutImage}
-                alt={brand.heroImageAlt}
-                className="w-full object-cover object-top aspect-[4/3] scale-110 origin-top"
-              />
+            <div className="relative">
+              {/* Image wrapper — overflow-hidden to crop watermark */}
+              <div className="overflow-hidden rounded-3xl">
+                <img
+                  src={brand.aboutImage}
+                  alt={brand.heroImageAlt}
+                  className="w-full object-cover object-top aspect-[4/3] scale-110 origin-top"
+                />
+              </div>
 
-              {/* stat overlay card */}
-              <div className="absolute -bottom-6 -left-4 sm:-left-6 rounded-2xl bg-white/95 px-6 py-4 shadow-card-hover backdrop-blur-sm">
-                <p className="font-display text-3xl text-brand-navy-900">
+              {/* stat overlay card — outside overflow-hidden so it's not clipped */}
+              <div className="absolute bottom-0 left-0 sm:-bottom-4 sm:-left-4 rounded-2xl bg-white/95 px-4 py-3 sm:px-6 sm:py-4 shadow-card-hover backdrop-blur-sm">
+                <p className="font-display text-2xl sm:text-3xl text-brand-navy-900">
                   +15
                 </p>
-                <p className="text-sm font-medium text-slate-600">
+                <p className="text-xs sm:text-sm font-medium text-slate-600">
                   años cuidando la cadena de frío
                 </p>
               </div>
