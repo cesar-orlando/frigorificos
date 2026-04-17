@@ -112,9 +112,10 @@ export default function Hero() {
             <span>{brand.tagline}</span>
           </motion.div>
 
-          {/* Title */}
-          <div className="mb-6 overflow-hidden">
-            <motion.h1
+          {/* Title — sr-only h1 for screen readers, aria-hidden visual */}
+          <h1 className="sr-only">{titleLine1} {titleLine2}</h1>
+          <div className="mb-6 overflow-hidden" aria-hidden="true">
+            <div
               className="font-display text-6xl leading-[0.9] tracking-tight sm:text-7xl md:text-8xl lg:text-9xl"
             >
               {/* Line 1 */}
@@ -139,7 +140,7 @@ export default function Hero() {
                   {titleLine2}
                 </motion.span>
               </span>
-            </motion.h1>
+            </div>
           </div>
 
           {/* Animated red line */}
