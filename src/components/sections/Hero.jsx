@@ -12,39 +12,19 @@ import {
   viewport,
 } from '../../lib/animations';
 
-/* ── helpers to extract numeric value from stat strings ── */
-function parseStatNumber(str) {
-  const cleaned = str.replace(/[^0-9.]/g, '');
-  return parseInt(cleaned, 10) || 0;
-}
-
-function getStatSuffix(str) {
-  // captures trailing non-digit chars like "+", "%", "M+", etc.
-  const match = str.match(/[\d.,]+(.*)$/);
-  return match ? match[1] : '';
-}
-
-function getStatPrefix(str) {
-  const match = str.match(/^([^\d]*)/);
-  return match ? match[1] : '';
-}
-
 /* ── Single stat display ── */
-function StatItem({ stat, index, total }) {
-  const numericEnd = parseStatNumber(stat.number);
-  const suffix = getStatSuffix(stat.number);
-  const prefix = getStatPrefix(stat.number);
-  const { count, ref } = useCountUp(numericEnd, 2000);
+function StatItem({ stat }) {
+  const { count, ref } = useCountUp(stat.isStatic ? 0 : stat.value, 2000);
 
   return (
     <div ref={ref} className="flex flex-col items-center text-center lg:items-start lg:text-left">
       <span className="font-display text-3xl text-white sm:text-4xl lg:text-5xl">
-        {prefix}
-        {count.toLocaleString()}
-        {suffix}
+        {stat.isStatic ? stat.staticValue : (
+          <>{count.toLocaleString()}{stat.suffix}</>
+        )}
       </span>
       <span className="mt-1 text-xs font-medium uppercase tracking-wider text-slate-400 sm:text-sm">
-        {stat.label}
+        {stat.isStatic ? stat.sublabel : stat.label}
       </span>
     </div>
   );
@@ -89,9 +69,9 @@ export default function Hero() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  /* Title words – split to animate individually */
-  const titleLine1 = 'FRIGORÍFICO';
-  const titleLine2 = 'SANTANDER';
+  /* Title words – dynamic based on active brand */
+  const titleLine1 = brand.id === 'frigorifico' ? 'FRIGORÍFICO' : 'SANTANDER';
+  const titleLine2 = brand.id === 'frigorifico' ? 'SANTANDER' : 'LOGÍSTICA TERRESTRE';
 
   return (
     <section
