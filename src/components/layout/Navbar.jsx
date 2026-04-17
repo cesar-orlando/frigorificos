@@ -122,7 +122,7 @@ export default function Navbar() {
         <button
           onClick={() => setMobileOpen((v) => !v)}
           className={cn(
-            'relative z-10 rounded-lg p-2 transition-colors lg:hidden',
+            'relative z-50 rounded-lg p-2 transition-colors lg:hidden',
             scrolled || mobileOpen
               ? 'text-brand-navy-900 hover:bg-brand-navy-100/50'
               : 'text-white hover:bg-white/10',
@@ -155,7 +155,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-              className="absolute right-0 top-0 flex h-full w-full max-w-sm flex-col bg-white shadow-2xl"
+              className="absolute right-0 top-0 z-10 flex h-full w-full max-w-sm flex-col bg-white shadow-2xl"
             >
               {/* Close row */}
               <div className="flex items-center justify-between border-b border-brand-navy-100 px-6 py-4">
