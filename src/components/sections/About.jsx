@@ -138,10 +138,8 @@ export default function About() {
               <img
                 src={brand.aboutImage}
                 alt={brand.heroImageAlt}
-                className="w-full object-cover aspect-[4/3]"
+                className="w-full object-cover object-top aspect-[4/3] scale-110 origin-top"
               />
-              {/* Gradient to cover watermark */}
-              <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
 
               {/* stat overlay card */}
               <div className="absolute -bottom-6 -left-4 sm:-left-6 rounded-2xl bg-white/95 px-6 py-4 shadow-card-hover backdrop-blur-sm">

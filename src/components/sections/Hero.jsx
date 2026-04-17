@@ -213,7 +213,7 @@ export default function Hero() {
               <img
                 src={brand.heroImage}
                 alt={brand.heroImageAlt}
-                className="h-full w-full object-cover"
+                className="h-[115%] w-full object-cover object-top"
                 loading="eager"
               />
               {/* Overlay gradients (also covers watermark in bottom-right) */}
