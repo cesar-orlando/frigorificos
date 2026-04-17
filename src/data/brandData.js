@@ -1,0 +1,76 @@
+import {
+  Snowflake, Truck, ShieldCheck, Users, Lightbulb, Heart,
+  Award, Handshake, Star, Thermometer, Warehouse, Package,
+  MapPin, Clock, BarChart3, Leaf
+} from 'lucide-react';
+
+export const brands = {
+  frigorifico: {
+    id: 'frigorifico',
+    name: 'Frigorífico Santander',
+    shortName: 'Frigorífico',
+    tagline: 'Almacenaje y Logística con Temperatura Controlada',
+    slogan: 'Cuidamos tu producto como tú lo harías',
+    font: 'font-montserrat',
+    logo: 'https://milkasa.s3.us-east-2.amazonaws.com/logos/frigorificos/LOGO_FS_NVO-removebg-preview.png',
+    description: 'Empresa mexicana con más de 15 años de experiencia ubicada en Guadalajara, Jalisco. Especializada en almacenamiento con temperatura controlada, brindamos servicios integrales de logística y seguridad alimenticia para el resguardo de alimentos congelados y productos que requieren refrigeración.',
+    vision: 'Ser el mejor Almacén Frigorífico de Guadalajara.',
+    mision: 'Brindamos soluciones de almacenaje a temperatura controlada con calidad, seguridad y confianza, respaldados por nuestra experiencia, talento humano e innovación tecnológica, aprovechando nuestra ubicación estratégica para nuestros clientes.',
+    industries: ['Helados', 'Concentrados', 'Cárnica', 'Farmacéutica', 'Restaurantera', 'Panadera'],
+    values: [
+      { icon: ShieldCheck, title: 'Seguridad', desc: 'Trabajamos para lograr un ambiente laboral seguro y saludable.' },
+      { icon: Users, title: 'Enfoque al Cliente', desc: 'Realizamos nuestro servicio de manera correcta y oportuna.' },
+      { icon: Lightbulb, title: 'Innovación', desc: 'Implementamos soluciones integrando sistemas y herramientas tecnológicas.' },
+      { icon: Heart, title: 'Respeto', desc: 'Actuamos con integridad hacia nuestros clientes internos y externos.' },
+    ],
+    services: [
+      { icon: Thermometer, title: 'Almacenaje Refrigerado', desc: 'Cámaras de refrigeración y congelación con control preciso de temperatura 24/7.' },
+      { icon: Warehouse, title: 'Logística Integral', desc: 'Gestión completa de inventarios con tecnología de punta y trazabilidad total.' },
+      { icon: ShieldCheck, title: 'Seguridad Alimentaria', desc: 'Cumplimiento de normativas sanitarias y estándares de calidad internacionales.' },
+      { icon: Package, title: 'Cross-Docking', desc: 'Recepción y redistribución eficiente de mercancía con mínimo almacenamiento.' },
+      { icon: BarChart3, title: 'Monitoreo en Tiempo Real', desc: 'Sistemas de monitoreo continuo de temperatura y condiciones de almacenaje.' },
+      { icon: Leaf, title: 'Sustentabilidad', desc: 'Equipos de refrigeración eco-eficientes con bajo impacto ambiental.' },
+    ],
+    stats: [
+      { number: '15+', label: 'Años de Experiencia' },
+      { number: '5,000+', label: 'm² de Almacenaje' },
+      { number: '24/7', label: 'Monitoreo Continuo' },
+      { number: '500+', label: 'Clientes Satisfechos' },
+    ],
+    heroIcon: Snowflake,
+  },
+  logistica: {
+    id: 'logistica',
+    name: 'Santander Logística Terrestre',
+    shortName: 'Logística LT',
+    tagline: 'Transporte y Distribución Nacional',
+    slogan: 'Transportamos y Conservamos Calidad',
+    font: 'font-poppins',
+    logo: 'https://milkasa.s3.us-east-2.amazonaws.com/logos/frigorificos/logo_Santander_LT_PNG-removebg-preview.png',
+    description: 'Empresa mexicana especializada en el transporte de Productos Alimenticios y Farmacéuticos, reconocida por su puntualidad y calidad en el servicio. Contamos con unidades propias y un equipo comprometido con la seguridad, la trazabilidad y el cumplimiento de la cadena de frío.',
+    vision: 'Ser una empresa de transporte de Productos Alimenticios y Farmacéuticos reconocida por nuestra puntualidad y calidad en el servicio.',
+    mision: 'Ofrecer soluciones logísticas especializadas, seguras y eficientes para el transporte de productos alimenticios y farmacéuticos, garantizando el cumplimiento de la cadena de frío, la trazabilidad y altos estándares de calidad.',
+    industries: ['Alimentaria', 'Farmacéutica', 'Restaurantera', 'Comercio Especializado'],
+    values: [
+      { icon: ShieldCheck, title: 'Seguridad', desc: 'Respetamos la normatividad vigente en cada ruta.' },
+      { icon: Award, title: 'Responsabilidad', desc: 'Ética, puntualidad y cumplimiento constante.' },
+      { icon: Handshake, title: 'Confianza', desc: 'Relaciones sólidas y transparentes con clientes.' },
+      { icon: Star, title: 'Excelencia', desc: 'Mejora continua y formación del personal.' },
+    ],
+    services: [
+      { icon: Truck, title: 'Transporte Refrigerado', desc: 'Flotilla propia de tractocamiones con sistema de refrigeración de última generación.' },
+      { icon: MapPin, title: 'Cobertura Nacional', desc: 'Red de distribución que conecta los principales centros de producción y consumo del país.' },
+      { icon: Clock, title: 'Entregas Puntuales', desc: 'Seguimiento en tiempo real y compromiso con los tiempos de entrega acordados.' },
+      { icon: Thermometer, title: 'Cadena de Frío', desc: 'Garantizamos la temperatura óptima durante todo el trayecto de tu mercancía.' },
+      { icon: BarChart3, title: 'Rastreo GPS', desc: 'Monitoreo satelital en tiempo real de cada unidad para máxima visibilidad.' },
+      { icon: ShieldCheck, title: 'Certificaciones', desc: 'Cumplimiento de normativas de transporte y seguridad alimentaria vigentes.' },
+    ],
+    stats: [
+      { number: '100+', label: 'Unidades Propias' },
+      { number: '32', label: 'Estados con Cobertura' },
+      { number: '99%', label: 'Entregas a Tiempo' },
+      { number: '1M+', label: 'Km Recorridos al Año' },
+    ],
+    heroIcon: Truck,
+  },
+};
