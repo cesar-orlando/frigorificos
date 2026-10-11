@@ -206,7 +206,7 @@ export default function Contact() {
               <iframe
                 title="Ubicación de Frigorífico Santander"
                 src={MAPS_EMBED_URL}
-                className="aspect-video w-full grayscale"
+                className="aspect-video w-full"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
