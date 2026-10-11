@@ -63,13 +63,18 @@ export default function Services() {
             const number = String(i + 1).padStart(2, '0');
 
             return (
-              <motion.div
+              <motion.a
                 key={service.title}
+                href="#contacto"
+                onClick={() =>
+                  window.dispatchEvent(new CustomEvent('service:select', { detail: service.title }))
+                }
                 variants={staggerItem}
                 className={cn(
-                  'group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8',
+                  'group relative block overflow-hidden rounded-3xl border border-slate-200 bg-white p-8',
                   'transition-all duration-300',
-                  'hover:-translate-y-2 hover:border-brand-red-200 hover:shadow-card-hover'
+                  'hover:-translate-y-2 hover:border-brand-red-200 hover:shadow-card-hover',
+                  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-red-400'
                 )}
               >
                 {/* decorative number */}
@@ -99,12 +104,12 @@ export default function Services() {
                   {service.desc}
                 </p>
 
-                {/* hidden CTA */}
-                <div className="relative z-10 flex items-center gap-1.5 text-sm font-semibold text-brand-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                {/* CTA — hidden until hover on desktop, always visible on touch */}
+                <div className="relative z-10 flex items-center gap-1.5 text-sm font-semibold text-brand-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 pointer-coarse:opacity-100">
                   <span>Conocer más</span>
                   <ArrowRight className="h-4 w-4" />
                 </div>
-              </motion.div>
+              </motion.a>
             );
           })}
         </motion.div>

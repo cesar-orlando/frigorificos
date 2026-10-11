@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { WHATSAPP_NUMBER, WHATSAPP_MESSAGE } from '../../lib/constants';
+import { useBrand } from '../../context/BrandContext';
+import { getWhatsAppUrl } from '../../lib/constants';
 
 export default function WhatsAppFloat() {
+  const { brand } = useBrand();
   const [visible, setVisible] = useState(false);
   const [hovered, setHovered] = useState(false);
 
@@ -11,7 +13,7 @@ export default function WhatsAppFloat() {
     return () => clearTimeout(timer);
   }, []);
 
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+  const url = getWhatsAppUrl(brand.name);
 
   return (
     <AnimatePresence>
