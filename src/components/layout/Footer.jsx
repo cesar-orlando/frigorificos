@@ -1,16 +1,9 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Globe, MessageSquare, ExternalLink } from 'lucide-react';
 import { useBrand } from '../../context/BrandContext';
 import { cn } from '../../lib/utils';
 import { fadeInUp, staggerContainer, staggerItem, viewport } from '../../lib/animations';
-import { NAV_LINKS, CONTACT_INFO } from '../../lib/constants';
-
-const socialLinks = [
-  { icon: Globe, label: 'LinkedIn', href: '#' },          // TODO: URL real
-  { icon: MessageSquare, label: 'Facebook', href: '#' },  // TODO: URL real
-  { icon: ExternalLink, label: 'Instagram', href: '#' },  // TODO: URL real
-];
+import { NAV_LINKS, INSTAGRAM_URL, getContactInfo } from '../../lib/constants';
 
 export default function Footer() {
   const { brand } = useBrand();
@@ -47,26 +40,34 @@ export default function Footer() {
 
             {/* Social icons */}
             <div className="flex items-center gap-3">
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                    className={cn(
-                      'flex h-10 w-10 items-center justify-center rounded-full',
-                      'border border-slate-700 text-white/60',
-                      'transition-all duration-300',
-                      'hover:border-brand-red-500 hover:bg-brand-red-500/10 hover:text-brand-red-400 hover:shadow-glow-red',
-                    )}
-                  >
-                    <Icon className="h-4 w-4" strokeWidth={1.5} />
-                  </a>
-                );
-              })}
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className={cn(
+                  'flex h-10 w-10 items-center justify-center rounded-full',
+                  'border border-slate-700 text-white/60',
+                  'transition-all duration-300',
+                  'hover:border-brand-red-500 hover:bg-brand-red-500/10 hover:text-brand-red-400 hover:shadow-glow-red',
+                )}
+              >
+                {/* Instagram SVG icon */}
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
             </div>
           </motion.div>
 
@@ -114,7 +115,7 @@ export default function Footer() {
               Contacto
             </h4>
             <ul className="space-y-4">
-              {CONTACT_INFO.map((item) => (
+              {getContactInfo(brand).map((item) => (
                 <li key={item.type}>
                   <span className="mb-0.5 block text-[11px] font-semibold uppercase tracking-wider text-slate-400">
                     {item.label}
@@ -122,7 +123,8 @@ export default function Footer() {
                   {item.href ? (
                     <a
                       href={item.href}
-                      className="text-sm text-white/30 transition-colors duration-200 hover:text-white"
+                      {...(item.external && { target: '_blank', rel: 'noopener noreferrer' })}
+                      className="text-sm text-white/30 transition-colors duration-200 wrap-anywhere hover:text-white"
                     >
                       {item.value}
                     </a>

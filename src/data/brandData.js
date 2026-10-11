@@ -11,6 +11,7 @@ export const brands = {
     shortName: 'Frigorífico',
     tagline: 'Almacenaje y Logística con Temperatura Controlada',
     slogan: 'Cuidamos tu producto como tú lo harías',
+    email: 'contacto@frigorificosantander.mx', // TODO: confirmar email real
     font: 'font-display',
     logo: 'https://milkasa.s3.us-east-2.amazonaws.com/logos/frigorificos/LOGO_FS_NVO-removebg-preview.png',
     description: 'Empresa mexicana con más de 15 años de experiencia ubicada en Guadalajara, Jalisco. Especializada en almacenamiento con temperatura controlada, brindamos servicios integrales de logística y seguridad alimenticia para el resguardo de alimentos congelados y productos que requieren refrigeración.',
@@ -49,6 +50,7 @@ export const brands = {
     shortName: 'Logística LT',
     tagline: 'Transporte y Distribución Nacional',
     slogan: 'Transportamos y Conservamos Calidad',
+    email: 'servicioaclientes@santanderlt.mx',
     font: 'font-display',
     logo: 'https://milkasa.s3.us-east-2.amazonaws.com/logos/frigorificos/logo_Santander_LT_PNG-removebg-preview.png',
     description: 'Empresa mexicana especializada en el transporte de Productos Alimenticios y Farmacéuticos, reconocida por su puntualidad y calidad en el servicio. Contamos con unidades propias y un equipo comprometido con la seguridad, la trazabilidad y el cumplimiento de la cadena de frío.',

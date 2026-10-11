@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -25,9 +25,9 @@ import {
   viewport,
 } from '../../lib/animations';
 import {
-  CONTACT_INFO,
-  WHATSAPP_NUMBER,
-  WHATSAPP_MESSAGE,
+  getContactInfo,
+  getWhatsAppUrl,
+  MAPS_EMBED_URL,
   EMAILJS_CONFIG,
 } from '../../lib/constants';
 
@@ -57,6 +57,7 @@ export default function Contact() {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(contactSchema),
@@ -69,6 +70,13 @@ export default function Contact() {
       mensaje: '',
     },
   });
+
+  /* ── Preselect service when a card in Services is clicked ── */
+  useEffect(() => {
+    const onSelect = (e) => setValue('servicio', e.detail, { shouldValidate: true });
+    window.addEventListener('service:select', onSelect);
+    return () => window.removeEventListener('service:select', onSelect);
+  }, [setValue]);
 
   const onSubmit = async (data) => {
     setSending(true);
@@ -95,7 +103,7 @@ export default function Contact() {
     }
   };
 
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+  const whatsappUrl = getWhatsAppUrl(brand.name);
 
   /* ── Input helper ── */
   const inputCls = (field) =>
@@ -138,7 +146,7 @@ export default function Contact() {
               variants={staggerContainer}
               className="mb-10 grid grid-cols-2 gap-4"
             >
-              {CONTACT_INFO.map((item) => {
+              {getContactInfo(brand).map((item) => {
                 const Icon = iconMap[item.type] || MapPin;
                 const isLink = item.href;
 
@@ -150,23 +158,35 @@ export default function Contact() {
                     <span className="mb-1 block text-[11px] font-semibold uppercase tracking-wider text-slate-500">
                       {item.label}
                     </span>
-                    <span className="text-sm font-medium leading-snug text-brand-navy-900">
-                      {item.value}
+                    <span className="text-sm font-medium leading-snug text-brand-navy-900 wrap-anywhere">
+                      {item.type === 'email' ? (
+                        <>
+                          {item.value.split('@')[0]}@<wbr />
+                          {item.value.split('@')[1]}
+                        </>
+                      ) : (
+                        item.value
+                      )}
                     </span>
                   </>
                 );
 
                 return (
-                  <motion.div key={item.type} variants={staggerItem}>
+                  <motion.div
+                    key={item.type}
+                    variants={staggerItem}
+                    className={cn((item.type === 'location' || item.type === 'email') && 'col-span-2')}
+                  >
                     {isLink ? (
                       <a
                         href={item.href}
-                        className="flex flex-col rounded-2xl border border-slate-200 p-4 transition-colors hover:border-brand-ice-200 hover:bg-brand-ice-50/40"
+                        {...(item.external && { target: '_blank', rel: 'noopener noreferrer' })}
+                        className="flex h-full flex-col rounded-2xl border border-slate-200 p-4 transition-colors hover:border-brand-ice-200 hover:bg-brand-ice-50/40"
                       >
                         {content}
                       </a>
                     ) : (
-                      <div className="flex flex-col rounded-2xl border border-slate-200 p-4">
+                      <div className="flex h-full flex-col rounded-2xl border border-slate-200 p-4">
                         {content}
                       </div>
                     )}
@@ -184,8 +204,8 @@ export default function Contact() {
               className="overflow-hidden rounded-2xl ring-1 ring-slate-200"
             >
               <iframe
-                title="Ubicaci\u00f3n"
-                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d29862.04!2d-103.3496!3d20.6597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2smx!4v1700000000000"
+                title="Ubicación de Frigorífico Santander"
+                src={MAPS_EMBED_URL}
                 className="aspect-video w-full grayscale"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -328,7 +348,7 @@ export default function Contact() {
                   <textarea
                     id="mensaje"
                     rows={4}
-                    placeholder="Cu\u00e9ntanos c\u00f3mo podemos ayudarte..."
+                    placeholder="Cuéntanos cómo podemos ayudarte..."
                     className={cn(inputCls('mensaje'), 'resize-none')}
                     {...register('mensaje')}
                   />

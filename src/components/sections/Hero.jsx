@@ -157,7 +157,7 @@ export default function Hero() {
             variants={staggerItem}
             className="mb-8 max-w-md text-lg italic text-slate-300 sm:text-xl"
           >
-            {brand.slogan}
+            &ldquo;{brand.slogan}&rdquo;
           </motion.p>
 
           {/* CTAs */}
